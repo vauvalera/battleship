@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="battleship.css">
+    </head>
+    <body>
+        <div class='battleship'>
+            <span class='battleship-btn_title'>Морской бой</span>
+            <div class='battleship-fields'>
+                <div class='battleship-field-user'> 
+                </div>
+                <div class='battleship-field-computer'> 
+                </div>
+            </div>
+            <div class='battleship-btn'>
+                <span id='play' class='battleship-btn_play'>Играть</span>
+                <span id='serviseText' class='battleship-btn_servise-text'></span>
+            </div>
+            <form id="battleship-form" class='battleship-form'>
+                <div class='battleship-content'>
+                    <div class="battleship-message">Введите, пожалуйста, Ваше имя</div>
+                    <input name="name" class="battleship-user-name" type="text">
+                    <input type="submit" class='battleship-btn_start' value="Начать">
+                </div>
+            </form>
+            <div class='battleship-overlay'></div>
+        </div>
+        <!-- <script src="js.js"></script> -->
+        <script src="compiledJs.js"></script>
+    </body>
+</html>
