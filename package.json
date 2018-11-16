@@ -1,0 +1,25 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vauvalera/battleship.git"
+  },
+  "author": "vauvalera@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vauvalera/battleship/issues"
+  },
+  "homepage": "https://github.com/vauvalera/battleship#readme",
+  "devDependencies": {
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  }
+}

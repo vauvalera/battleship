@@ -1,3 +1,5 @@
+import functions from '../functions';
+
 export default class Field {
 
     constructor(field, player) {
@@ -6,6 +8,8 @@ export default class Field {
         this.ships = [];
         this.size = 10;
         this.matrix = [];
+        this.killedShipsCount = 0;
+        this.shotsList = (player == 'user') ? this.generateShotsList(this.size) : null;
     }
 
     createNewField() {
@@ -19,10 +23,10 @@ export default class Field {
     }
 
     isAvailableCoordinats({ decks, x, y, kx, ky }) {
-        let fromX = getToCoord(x);
-        let toX = getFromCoordByAlign(x, kx, decks);
-        let fromY = getToCoord(y);
-        let toY = getFromCoordByAlign(y, ky, decks);
+        let fromX = functions.getToCoord(x);
+        let toX = functions.getFromCoordByAlign(x, kx, decks);
+        let fromY = functions.getToCoord(y);
+        let toY = functions.getFromCoordByAlign(y, ky, decks);
 
         for (let i = fromX; i < toX; i++) {
             for (let j = fromY; j < toY; j++) {
@@ -46,8 +50,8 @@ export default class Field {
     getCoordinatsByDecks(decks) {
         const kx = Math.round(Math.random());
         const ky = (kx > 0) ? 0 : 1;
-        const y = (ky > 0) ? getRandom(10 - decks) : getRandom(10);
-        const x = (ky > 0) ? getRandom(10) : getRandom(10 - decks);
+        const y = (ky > 0) ? functions.getRandom(10 - decks) : functions.getRandom(10);
+        const x = (ky > 0) ? functions.getRandom(10) : functions.getRandom(10 - decks);
         const isAddable = this.isAvailableCoordinats({ decks, x, y, kx, ky })
         if (!isAddable) return this.getCoordinatsByDecks(decks);
         return {
@@ -59,6 +63,22 @@ export default class Field {
         }
     }
 
+    generateShotsList(size) {
+        if (!size) {
+            return
+        }
+
+        const temp = [];
+
+        for (let i = 0; i < size; i++) {
+            for (let j = 0; j < size; j++) {
+                temp.push([i, j]);
+            }
+        }
+
+        return temp;
+    }
+
     drawField() {
         this.field.innerHTML = '';
         this.matrix.forEach((item, i) => {
@@ -68,11 +88,11 @@ export default class Field {
             item.forEach((elem, j) => {
                 const cell = document.createElement('div');
                 if (elem > 0 && elem < 11) {
-                    cell.className = (this.player == 'user') ? 'ship' : 'cell'
+                    cell.className = (this.player == 'user') ? 'ship' : 'cell';
                 } else if (elem == -1) {
                     cell.className = 'dot';
                 } else if (elem == 15) {
-                    cell.className = 'kill'
+                    cell.className = 'kill';
                 } else {
                     cell.className = 'cell';
 
@@ -83,4 +103,5 @@ export default class Field {
             })
         });
     }
+
 };
